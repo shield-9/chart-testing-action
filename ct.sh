@@ -35,18 +35,6 @@ main() {
     run_ct_container
     trap cleanup EXIT
 
-    local changed
-    changed=$(docker_exec ct list-changed)
-    if [[ -z "$changed" ]]; then
-        echo 'No chart changes detected.'
-        echo "::set-output name=changed::false"
-        return
-    fi
-
-    # Convenience output for other actions to make use of ct config to check if
-    # charts changed.
-    echo "::set-output name=changed::true"
-
     if [[ "$command" == "lint" ]] || [[ "$command" == "list-changed" ]]; then
         helm_init
     # All other ct commands require a cluster to be created in a previous step.
