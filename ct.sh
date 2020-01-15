@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-DEFAULT_IMAGE=quay.io/helmpack/chart-testing:v2.4.0
+DEFAULT_IMAGE=quay.io/helmpack/chart-testing:v3.0.0-beta.1
 
 show_help() {
 cat << EOF
@@ -40,7 +40,7 @@ main() {
     # All other ct commands require a cluster to be created in a previous step.
     else
         configure_kube
-        install_tiller
+        #install_tiller
     fi
 
     run_ct
